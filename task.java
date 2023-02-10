@@ -27,7 +27,7 @@ public class task {
             System.out.println("диагональ");
             digUser = sc.nextDouble();
             break;
-        default:
+        default: 
             break;
     }
     for(Laptop lap: unicLaptop) {
@@ -62,7 +62,7 @@ public class task {
   
         System.out.println("Добро пожаловать в каталог ноутбуков!  \n Введите желаемое действие  1 - Печать всех товаров 2 - Поиск по каталогу 0 - Выход ");
         int pointUser = sc.nextInt();
-        
+
         Map<Integer, String> mapCrit = new HashMap<>();
         mapCrit.put(1, "объем оперативной памяти");
         mapCrit.put(2, "объем накопителя");
