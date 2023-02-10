@@ -26,12 +26,14 @@ public class Laptop {
     public boolean equals(Object obj) 
     {
         if (obj instanceof Laptop) {
-            return this.name.equals(((Laptop) obj).name) && this.ram == ((Laptop) obj).ram 
-                                && this.storageCap == ((Laptop) obj).storageCap && this.os.equals(((Laptop) obj).os) 
-                                && this.colour.equals(((Laptop) obj).colour) && this.diagonal == ((Laptop) obj).diagonal;
+            return this.name.equals(((Laptop) obj).name) 
+                                && this.ram == ((Laptop) obj).ram 
+                                && this.storageCap == ((Laptop) obj).storageCap 
+                                && this.os.equals(((Laptop) obj).os) 
+                                && this.colour.equals(((Laptop) obj).colour) 
+                                && this.diagonal == ((Laptop) obj).diagonal;
         }
         return false;
-        
     }
 
     public int getRam()
@@ -50,5 +52,6 @@ public class Laptop {
     {
         return this.diagonal;
     }
-    
 }
+    
+    

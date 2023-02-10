@@ -1,3 +1,4 @@
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -5,6 +6,36 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class task {
+    public final static Scanner sc = new Scanner(System.in);       
+
+    public static void sortLaptop(int ramUser, int storUser, double digUser,  Set<Laptop> unicLaptop)
+{
+
+    System.out.println("Введите желаемую характеристику для отбора 1-память, 2-накопитель, 3-диагональ ");
+    int sort = sc.nextInt();
+
+    switch (sort) {
+        case 1:
+            System.out.println("объем оперативной памяти: ");
+            ramUser = sc.nextInt();
+            break;
+        case 2:
+            System.out.println("объем накопителя: ");
+            storUser = sc.nextInt();
+            break;
+        case 3:
+            System.out.println("диагональ");
+            digUser = sc.nextDouble();
+            break;
+        default:
+            break;
+    }
+    for(Laptop lap: unicLaptop) {
+        if ((lap.getRam() >= ramUser) && (lap.getStorageCap() >= storUser)  && lap.getDiagonal() >= digUser) {
+            System.out.println(lap.toString());
+        }
+    }
+}
     
     public static void main(String[] args) throws Exception {
         
@@ -15,6 +46,10 @@ public class task {
         Laptop laptop5 = new Laptop("Xiomi RedmiBook 15", 8, 256, "Windows 11", "серый", 15.6);
         Laptop laptop6 = laptop1;
 
+        int ramUser=0;
+        int storUser=0;
+        double digUser=0;
+
         Set<Laptop> unicLaptop = new HashSet<Laptop>();
         unicLaptop.add(laptop1);
         unicLaptop.add(laptop2);
@@ -24,8 +59,10 @@ public class task {
         unicLaptop.add(laptop6);
         System.out.println(laptop1.equals(laptop6));
         System.out.printf("Всего уникалных ноутбуков: %d \n", unicLaptop.size());
+  
+        System.out.println("Добро пожаловать в каталог ноутбуков!  \n Введите желаемое действие  1 - Печать всех товаров 2 - Поиск по каталогу 0 - Выход ");
+        int pointUser = sc.nextInt();
         
-
         Map<Integer, String> mapCrit = new HashMap<>();
         mapCrit.put(1, "объем оперативной памяти");
         mapCrit.put(2, "объем накопителя");
@@ -33,22 +70,26 @@ public class task {
         mapCrit.put(4, "цвет");
         mapCrit.put(5, "диагональ");
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Введите желаемые характеристики: 1. объем оперативной памяти: ");
-        int ramUser = sc.nextInt();
-        System.out.println("объем накопителя: ");
-        int storUser = sc.nextInt();
-        
-        System.out.println("диагональ");
-        double digUser = sc.nextDouble();
-        
-        for(Laptop lap: unicLaptop) {
-            if ((lap.getRam() >= ramUser) && (lap.getStorageCap() >= storUser)  && lap.getDiagonal() >= digUser) {
-                System.out.println(lap.toString());
+        switch (pointUser) {
+            case 1:
+            for(Laptop lap: unicLaptop) 
+            {
+                if ((lap.getRam() >= ramUser) && (lap.getStorageCap() >= storUser)  && lap.getDiagonal() >= digUser) {
+                    System.out.println(lap.toString());
+                }
             }
+                break;
+            case 2:
+                sortLaptop(ramUser, storUser, digUser, unicLaptop);
+                break;
+            case 3:
+                System.exit(0);
+            default:
+                break;
         }
-        sc.close();
-        
+
+
+
     }
-    
+
 }
